@@ -39,6 +39,14 @@ function adicionarNumero(numero) {
   entrada.value += numero;
 }
 
+function adicionarPorcentagem() {
+  const input = entrada.value;
+  if (input && !isNaN(input.slice(-1))) {
+    // Adiciona % como operador
+    entrada.value += "%";
+  }
+}
+
 function adicionarParenteses() {
   const input = entrada.value;
   const ultimoChar = input.slice(-1);
@@ -73,7 +81,15 @@ function definirOperacao(operacao) {
 
 function calcularResultado() {
   try {
-    saida.innerHTML = eval(entrada.value);
+    let expressao = entrada.value;
+    // Substituir % por /100* para calcular porcentagem corretamente
+    // 20%100 se torna 20/100*100 = 20
+    // 20%50 se torna 20/100*50 = 10
+    expressao = expressao.replace(/(\d+)%(\d+)/g, "($1/100)*$2");
+    // Para porcentagem no final: 20% se torna 20/100
+    expressao = expressao.replace(/(\d+)%$/g, "$1/100");
+
+    saida.innerHTML = eval(expressao);
   } catch (error) {
     saida.innerHTML = "Erro";
   }
