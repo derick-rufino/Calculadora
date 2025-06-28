@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=dark_mode,light_mode"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Calculadora</h1>
+      <button id="theme-toggle" aria-label="Alternar modo escuro">
+        <span class="material-symbols-outlined" id="theme-icon">
+          dark_mode
+        </span>
+      </button>
+    </header>
+    <main>
+      <div id="calculadora">
+        <div id="tela">
+          <input
+            type="text"
+            name="operacao"
+            id="entrada"
+            autocomplete="off"
+            autofocus
+            placeholder="000"
+            maxlength="20"
+          />
+          <p id="resultado"></p>
+          <button onclick="apagarUltimoDigito()" id="btn-apagarUltimo">
+            &#9003;
+          </button>
+        </div>
+        <div id="botoes">
+          <button onclick="limparTudo()">C</button>
+          <button onclick="adicionarParenteses()">()</button>
+          <button onclick="adicionarNumero('%')">%</button>
+          <button onclick="definirOperacao('/')">/</button>
+          <button onclick="adicionarNumero('7')">7</button>
+          <button onclick="adicionarNumero('8')">8</button>
+          <button onclick="adicionarNumero('9')">9</button>
+          <button onclick="definirOperacao('*')">*</button>
+          <button onclick="adicionarNumero('4')">4</button>
+          <button onclick="adicionarNumero('5')">5</button>
+          <button onclick="adicionarNumero('6')">6</button>
+          <button onclick="definirOperacao('-')">-</button>
+          <button onclick="adicionarNumero('1')">1</button>
+          <button onclick="adicionarNumero('2')">2</button>
+          <button onclick="adicionarNumero('3')">3</button>
+          <button onclick="definirOperacao('+')">+</button>
+          <button onclick="adicionarNumero('.')">.</button>
+          <button onclick="adicionarNumero('0')">0</button>
+          <button onclick="calcularResultado()">=</button>
+        </div>
+      </div>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

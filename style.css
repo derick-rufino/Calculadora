@@ -1,0 +1,318 @@
+:root {
+  --primary-color: #1e40af;
+  --secondary-color: #f8fafc;
+  --accent-color: #2563eb;
+  --text-color: #0f172a;
+  --text-light: #475569;
+  --background-color: #f1f5f9;
+  --button-hover: #1d4ed8;
+  --operator-color: #3b82f6;
+  --display-bg: #ffffff;
+  --border-color: #cbd5e1;
+  --number-bg: #f1f5f9;
+  --number-text: #334155;
+  --shadow-light: rgba(15, 23, 42, 0.08);
+  --shadow-medium: rgba(15, 23, 42, 0.12);
+  --background-gradient-start: #dce3eb;
+  --background-gradient-end: #cedae9;
+}
+
+/* Modo Escuro */
+[data-theme="dark"] {
+  --primary-color: #1c51a6;
+  --secondary-color: #374151;
+  --accent-color: #4d85c9;
+  --text-color: #f8fafc;
+  --text-light: #cbd5e1;
+  --background-color: #0f172a;
+  --button-hover: #2563eb;
+  --operator-color: #60a5fa;
+  --display-bg: #1e293b;
+  --border-color: #475569;
+  --number-bg: #4b5563;
+  --number-text: #e2e8f0;
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-medium: rgba(0, 0, 0, 0.4);
+  --background-gradient-start: #0f172a;
+  --background-gradient-end: #1e293b;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, var(--background-gradient-start) 0%, var(--background-gradient-end) 100%);
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+  transition: background 0.3s ease;
+}
+
+header {
+  width: 100%;
+  height: 10dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+#theme-toggle {
+  position: absolute;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background: var(--display-bg);
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px var(--shadow-light);
+  border: 2px solid var(--border-color);
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px var(--shadow-medium);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+#theme-icon {
+  transition: transform 0.3s ease;
+}
+
+#theme-toggle:hover #theme-icon {
+  transform: rotate(20deg);
+}
+
+main {
+  width: 100%;
+  height: 90dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#calculadora {
+  width: 380px;
+  height: 580px;
+  min-height: 580px;
+  max-height: 580px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  background: var(--display-bg);
+  padding: 24px;
+  box-shadow: 0 20px 25px -5px var(--shadow-light),
+    0 10px 10px -5px var(--shadow-medium);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+#tela {
+  width: 100%;
+  height: 35%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  background: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: inset 0 2px 4px 0 var(--shadow-light);
+  overflow: hidden;
+  gap: 0px;
+  transition: all 0.3s ease;
+}
+
+#tela input {
+  width: 100%;
+  height: 45px;
+  min-height: 45px;
+  max-height: 45px;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 0;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--text-light);
+  background-color: transparent;
+  outline: none;
+  text-align: right;
+  flex-shrink: 0;
+  margin-bottom: 4px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+
+  &:focus {
+    border: none;
+  }
+  &::placeholder {
+    color: var(--text-light);
+    opacity: 0.6;
+  }
+}
+
+#tela p {
+  width: 100%;
+  height: 55px;
+  min-height: 55px;
+  max-height: 55px;
+  border: none;
+  padding: 4px 0;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+  background-color: transparent;
+  outline: none;
+  text-align: right;
+  margin-bottom: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  transition: color 0.3s ease;
+}
+
+div#botoes {
+  width: 100%;
+  height: 65%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+div#botoes button {
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-radius: 16px;
+  background: var(--number-bg);
+  color: var(--number-text);
+  font-size: 1.4rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 1px 3px 0 var(--shadow-light), 0 1px 2px 0 var(--shadow-medium);
+
+  &:hover {
+    background: var(--accent-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px var(--shadow-light),
+      0 2px 4px -1px var(--shadow-medium);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Botões de operação com estilo diferenciado */
+div#botoes button[onclick*="definirOperacao"] {
+  background: var(--accent-color);
+  color: white;
+  font-weight: 600;
+
+  &:hover {
+    background: var(--button-hover);
+  }
+}
+
+/* Botão de igual com destaque */
+div#botoes button[onclick*="calcularResultado"] {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  font-size: 1.6rem;
+  grid-column: span 2;
+
+  &:hover {
+    background: var(--button-hover);
+  }
+}
+
+/* Botão Limpar com cor diferenciada */
+div#botoes button[onclick*="limparTudo"] {
+  background: #dc2626;
+  color: white;
+  font-weight: 600;
+
+  &:hover {
+    background: #b91c1c;
+  }
+}
+
+button#btn-apagarUltimo {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent-color);
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 2px 4px 0 var(--shadow-light);
+
+  &:hover {
+    background: var(--button-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px var(--shadow-light),
+      0 2px 4px -1px var(--shadow-medium);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
