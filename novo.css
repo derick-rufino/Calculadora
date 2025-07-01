@@ -1,0 +1,258 @@
+/* ===== VARIÁVEIS DE CORES ===== */
+:root {
+  /* Cores principais do tema claro */
+  --primary-color: #1e40af;        /* Azul principal */
+  --secondary-color: #f8fafc;      /* Cinza claro de fundo */
+  --accent-color: #2563eb;         /* Azul de destaque */
+  --text-color: #0f172a;          /* Texto escuro */
+  --text-light: #475569;          /* Texto mais claro */
+  --background-color: #f1f5f9;    /* Fundo geral */
+  --button-hover: #1d4ed8;        /* Cor do hover */
+  --display-bg: #ffffff;          /* Fundo da tela */
+  --border-color: #cbd5e1;        /* Cor das bordas */
+  --number-bg: #f1f5f9;           /* Fundo dos botões numéricos */
+  --number-text: #334155;         /* Texto dos números */
+}
+
+/* Cores para o modo escuro */
+[data-theme="dark"] {
+  --primary-color: #3b82f6;
+  --secondary-color: #374151;
+  --accent-color: #60a5fa;
+  --text-color: #f8fafc;
+  --text-light: #cbd5e1;
+  --background-color: #0f172a;
+  --button-hover: #2563eb;
+  --display-bg: #1e293b;
+  --border-color: #475569;
+  --number-bg: #4b5563;
+  --number-text: #e2e8f0;
+}
+
+/* ===== RESET E CONFIGURAÇÕES BÁSICAS ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ===== LAYOUT PRINCIPAL ===== */
+/* Corpo da página - ocupa toda a tela e centraliza conteúdo */
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--background-color);
+  justify-content: center;
+  align-items: center;
+  transition: background 0.3s ease; /* Transição suave ao trocar tema */
+}
+
+/* ===== CABEÇALHO ===== */
+/* Barra superior com título e botão de tema */
+header {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 1.2rem;
+  position: relative;
+}
+
+/* Botão para alternar entre modo claro/escuro */
+#theme-toggle {
+  position: absolute;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  background: var(--display-bg);
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Efeito hover do botão tema */
+#theme-toggle:hover {
+  background: var(--accent-color);
+  color: white;
+}
+
+/* ===== ÁREA PRINCIPAL ===== */
+/* Container principal que ocupa o resto da tela */
+main {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== CALCULADORA ===== */
+/* Container da calculadora com tamanho fixo */
+#calculadora {
+  width: 380px;
+  height: 580px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  background: var(--display-bg);
+  padding: 24px;
+}
+
+/* ===== TELA DE EXIBIÇÃO ===== */
+/* Área superior onde aparece entrada e resultado */
+#tela {
+  width: 100%;
+  height: 35%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+  background: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  gap: 8px;
+}
+
+/* Campo de entrada onde digita os números */
+#tela input {
+  width: 100%;
+  height: 45px;
+  border: none;
+  padding: 8px 0;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--text-light);
+  background: transparent;
+  outline: none;
+  text-align: right;
+}
+
+/* Placeholder do campo de entrada */
+#tela input::placeholder {
+  color: var(--text-light);
+  opacity: 0.6;
+}
+
+/* Área onde aparece o resultado do cálculo */
+#tela p {
+  width: 100%;
+  height: 55px;
+  padding: 4px 0;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden; /* Esconde texto muito grande */
+}
+
+/* ===== BOTÕES DA CALCULADORA ===== */
+/* Grid 4x5 para organizar todos os botões */
+div#botoes {
+  width: 100%;
+  height: 65%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 colunas iguais */
+  grid-template-rows: repeat(5, 1fr);    /* 5 linhas iguais */
+  gap: 12px;
+}
+
+/* Estilo base para todos os botões */
+div#botoes button {
+  width: 100%;
+  height: 60px;
+  border: none;
+  border-radius: 16px;
+  background: var(--number-bg);
+  color: var(--number-text);
+  font-size: 1.4rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Efeito hover para todos os botões */
+div#botoes button:hover {
+  background: var(--accent-color);
+  color: white;
+}
+
+/* ===== BOTÕES ESPECIAIS ===== */
+/* Botões de operação (+, -, *, /) com cor diferente */
+div#botoes button[onclick*="definirOperacao"] {
+  background: var(--accent-color);
+  color: white;
+  font-weight: 600;
+}
+
+/* Hover dos botões de operação */
+div#botoes button[onclick*="definirOperacao"]:hover {
+  background: var(--button-hover);
+}
+
+/* Botão de igual (=) ocupa 2 colunas */
+div#botoes button[onclick*="calcularResultado"] {
+  background: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  font-size: 1.6rem;
+  grid-column: span 2; /* Ocupa 2 colunas */
+}
+
+/* Hover do botão igual */
+div#botoes button[onclick*="calcularResultado"]:hover {
+  background: var(--button-hover);
+}
+
+/* Botão limpar (C) com cor vermelha */
+div#botoes button[onclick*="limparTudo"] {
+  background: #dc2626; /* Vermelho */
+  color: white;
+  font-weight: 600;
+}
+
+/* Hover do botão limpar */
+div#botoes button[onclick*="limparTudo"]:hover {
+  background: #b91c1c; /* Vermelho mais escuro */
+}
+
+/* ===== BOTÃO APAGAR ===== */
+/* Botão pequeno para apagar último dígito */
+button#btn-apagarUltimo {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent-color);
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hover do botão apagar */
+button#btn-apagarUltimo:hover {
+  background: var(--button-hover);
+}
